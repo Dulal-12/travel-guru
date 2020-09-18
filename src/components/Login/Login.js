@@ -3,6 +3,8 @@ import './Login.css';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from '../../firebase.config';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import EmailIcon from '@material-ui/icons/Email';
 
 firebase.initializeApp(firebaseConfig);
 const Login = () => {
@@ -12,6 +14,12 @@ const Login = () => {
     })
     const [fbDetail,setfbDetail] = useState({
         isSignIn : false,
+    })
+
+    const [user,setUser] = useState({
+        email:'',
+        password:'',
+        name:'',
     })
 
 //firebase Provider
@@ -52,22 +60,30 @@ const Login = () => {
 
     const handleFieldInput = (e)=>{
        
+        let isValid = true;
         if(e.target.name === "email")
         {
-            const isEmailValid = /\S+@\S+\.\S+/.test(e.target.value);
+             isValid = /\S+@\S+\.\S+/.test(e.target.value);
             
         }
         if(e.target.name === "password")
         {
-            const isPasswordValid = (e.target.value).length>6 && ( /[a-z]\d|\d[a-z]/i).test( e.target.value);
+             isValid = (e.target.value).length>6 && ( /[a-z]\d|\d[a-z]/i).test( e.target.value);
+        }
+        if(isValid){
+            const newUser = {...user};
+            newUser[e.target.name] = e.target.value;
+            setUser(newUser);
         }
         
     }
    
     return (
         <div >
-             <form className="description">
+             <form className="description" >
                  <h1 style={{ fontFamily: 'Satisfy'}}>Login Form</h1>
+                        <p>Name:</p>
+                        <input type="text" name="text" onBlur={ handleFieldInput}id="text" placeholder="Username"/>
                         <p>Email :</p>
                         <input type="email" name="email" onBlur={ handleFieldInput}id="email" placeholder="Useremail"/>
                         <br/>
@@ -76,19 +92,20 @@ const Login = () => {
                         <input type="password" name="password" onBlur={ handleFieldInput} id="password" placeholder="Userpassword"/>
                         <br/>
                         <br/>
-                        <input type="submit" className="btn btn-primary" value="Submit"/>
+                        <input type="submit" className="btn btn-primary"  value="Submit"/>
                         
               </form>
              
               <div>
-                  {
-                  detail.isSignIn?<button className="btn1"  onClick={hadleGoogleSignOut}>Sign Out </button>:
-                  <button className="btn1"   onClick={hadleGoogleSignIn}>Sign In </button>
+                  
+              <EmailIcon style={{margin:"0px 750px",color:"blue",}}/>{
+                  detail.isSignIn?<button className="btn btn-primary btn1"  onClick={hadleGoogleSignOut}>Sign Out </button>:
+                  <button className="btn btn-primary btn1 "   onClick={hadleGoogleSignIn}>Sign In </button>
                   }<br/><br/>
-                  {fbDetail.isSignIn?<button className="btn1"   onClick={handleFbSignOut}>Sign Out</button>:
-                  <button className="btn1"  onClick={handleFbSignIn}>Sign In</button>}
+                <FacebookIcon style={{margin:"0px 750px",color:"blue",}}/> {fbDetail.isSignIn?<button className="btn btn-primary btn1"  onClick={handleFbSignOut}> Sign Out</button>:
+                  <button className="btn btn-primary btn1"  onClick={handleFbSignIn}>Sign In</button>}
               </div>
-            
+                
         </div>
     );
 };

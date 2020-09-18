@@ -8,25 +8,18 @@
     height:40px;
     width:250px;
 }
+.description input[type = 'text']{
+    border:1px solid green;
+    height:40px;
+    width:250px;
+}
 .description{
     margin:100px 500px;
     text-align: center;
 }
 .btn1{
     margin:0px 720px;
-    background-color:green;
-    color:white;
-    border:none;
-    width:100px;
-    height:60px;
-    border-radius:20px;
-    font-family: satisfy;
-    font-size:20px;
-}
-.btn1:hover{
-    background-color:yellowgreen;
-    box-shadow: 5px 5px 5px grey;
-   
-    font-weight: 600;
-
+    
+    
+    
 }
