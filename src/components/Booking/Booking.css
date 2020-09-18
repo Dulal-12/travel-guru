@@ -1,0 +1,16 @@
+.img-style{
+  
+    border-radius:20px;
+    box-shadow:5px 5px 10px grey;
+    border:2px solid yellowgreen;
+    
+}
+.text{
+    font-family: 'Satisfy', cursive;
+}
+.text-style h2{
+    color:green;
+}
+.booking{
+    margin-top: 40px;;
+}

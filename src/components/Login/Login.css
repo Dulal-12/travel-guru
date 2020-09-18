@@ -1,0 +1,14 @@
+.description input[type = 'email']{
+    border:1px solid green;
+    height:40px;
+    width:250px;
+}
+.description input[type = 'password']{
+    border:1px solid green;
+    height:40px;
+    width:250px;
+}
+.description{
+    margin:100px 500px;
+    text-align: center;
+}
