@@ -20,7 +20,12 @@ const Login = () => {
         email:'',
         password:'',
         name:'',
+        error:'',
+        isValid:false,
+        success:'',
     })
+
+    const [newUser,setNewUser] = useState(false);
 
 //firebase Provider
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -77,13 +82,70 @@ const Login = () => {
         }
         
     }
+    const handleSubmit = (e)=>{
+        if(newUser && user.email && user.password){
+            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+            .then(res=>{
+                const newUser = {...user};
+                newUser.error = '';
+                newUser.success = "Successful Your Signing Process";
+                newUser.isValid=true;
+                setUser(newUser);
+                updateName(user.name);
+            })
+            .catch(error=> {
+                const newUser = {...user};
+                newUser.error = error.message;
+                newUser.success = '';
+                newUser.isValid=false;
+                setUser(newUser);
+                
+                
+              });
+        }
+        if(!newUser && user.email && user.password){
+            firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+            .then(res=>{
+                const newUser = {...user};
+                newUser.error = '';
+                newUser.success = "Successful Your Signing Process";
+                newUser.isValid=true;
+                setUser(newUser);
+            })
+            .catch(error=> {
+                const newUser = {...user};
+                newUser.error = error.message;
+                newUser.success = '';
+                newUser.isValid=false;
+                setUser(newUser);
+                
+                
+              });
+        }
+
+
+        e.preventDefault();
+    }
+    const updateName = name=>{
+        var user = firebase.auth().currentUser;
+
+                user.updateProfile({
+                name: name,
+                }).then(function() {
+                // Update successful.
+                }).catch(function(error) {
+                // An error happened.
+                });
+    }
    
     return (
         <div >
-             <form className="description" >
+             <form className="description" onSubmit={handleSubmit}>
+                 <input type="checkbox" onChange={()=>setNewUser(!newUser)} name="newUser" id=""/>
+                 <label htmlFor="newUser">Sign Up</label>
                  <h1 style={{ fontFamily: 'Satisfy'}}>Login Form</h1>
-                        <p>Name:</p>
-                        <input type="text" name="text" onBlur={ handleFieldInput}id="text" placeholder="Username"/>
+                       {newUser&&
+                        <input type="text" name="text" onBlur={ handleFieldInput}id="text" placeholder="Username"/>}
                         <p>Email :</p>
                         <input type="email" name="email" onBlur={ handleFieldInput}id="email" placeholder="Useremail"/>
                         <br/>
@@ -92,17 +154,18 @@ const Login = () => {
                         <input type="password" name="password" onBlur={ handleFieldInput} id="password" placeholder="Userpassword"/>
                         <br/>
                         <br/>
-                        <input type="submit" className="btn btn-primary"  value="Submit"/>
+                       {newUser ?<input type="submit" className="btn btn-primary"  value="Sign Up"/>:<input type="submit" className="btn btn-primary"  value="Sign in"/>}
+                        {user.isValid?<p style={{fontSize:'18px'}}>{user.success}</p>:<p style={{fontSize:'18px'}}>{user.error}</p>}
                         
               </form>
              
               <div>
                   
-              <EmailIcon style={{margin:"0px 750px",color:"blue",}}/>{
+              <EmailIcon style={{margin:"0px 780px",color:"blue",}}/>{
                   detail.isSignIn?<button className="btn btn-primary btn1"  onClick={hadleGoogleSignOut}>Sign Out </button>:
                   <button className="btn btn-primary btn1 "   onClick={hadleGoogleSignIn}>Sign In </button>
                   }<br/><br/>
-                <FacebookIcon style={{margin:"0px 750px",color:"blue",}}/> {fbDetail.isSignIn?<button className="btn btn-primary btn1"  onClick={handleFbSignOut}> Sign Out</button>:
+                <FacebookIcon style={{margin:"0px 780px",color:"blue",}}/> {fbDetail.isSignIn?<button className="btn btn-primary btn1"  onClick={handleFbSignOut}> Sign Out</button>:
                   <button className="btn btn-primary btn1"  onClick={handleFbSignIn}>Sign In</button>}
               </div>
                 
