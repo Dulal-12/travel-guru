@@ -16,9 +16,10 @@
 .description{
     margin:100px 500px;
     text-align: center;
+    box-shadow:5px 5px 10px lightgrey;
+    padding:40px;
 }
 .btn1{
-    margin:0px 720px;
-    width:150px;
-    height:50px;
+    margin:0px 700px;
+    
 }

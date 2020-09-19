@@ -145,13 +145,13 @@ const Login = () => {
                  <label htmlFor="newUser">Sign Up</label>
                  <h1 style={{ fontFamily: 'Satisfy'}}>Login Form</h1>
                        {newUser&&
-                        <input type="text" name="text" onBlur={ handleFieldInput}id="text" placeholder="Username"/>}
+                        <input type="text" name="text" onBlur={ handleFieldInput}id="text" placeholder="Username" required/>}
                         <p>Email :</p>
-                        <input type="email" name="email" onBlur={ handleFieldInput}id="email" placeholder="Useremail"/>
+                        <input type="email" name="email" onBlur={ handleFieldInput}id="email" placeholder="Useremail" required/>
                         <br/>
                         <br/>
                         <p>Password:</p>
-                        <input type="password" name="password" onBlur={ handleFieldInput} id="password" placeholder="Userpassword"/>
+                        <input type="password" name="password" onBlur={ handleFieldInput} id="password" placeholder="Userpassword" required/>
                         <br/>
                         <br/>
                        {newUser ?<input type="submit" className="btn btn-primary"  value="Sign Up"/>:<input type="submit" className="btn btn-primary"  value="Sign in"/>}
@@ -161,11 +161,11 @@ const Login = () => {
              
               <div>
                   
-              <EmailIcon style={{margin:"0px 780px",color:"blue",}}/>{
+              <EmailIcon style={{margin:"0px 730px",color:"blue",}}/>{
                   detail.isSignIn?<button className="btn btn-primary btn1"  onClick={hadleGoogleSignOut}>Sign Out </button>:
                   <button className="btn btn-primary btn1 "   onClick={hadleGoogleSignIn}>Sign In </button>
                   }<br/><br/>
-                <FacebookIcon style={{margin:"0px 780px",color:"blue",}}/> {fbDetail.isSignIn?<button className="btn btn-primary btn1"  onClick={handleFbSignOut}> Sign Out</button>:
+                <FacebookIcon style={{margin:"0px 730px",color:"blue",}}/> {fbDetail.isSignIn?<button className="btn btn-primary btn1"  onClick={handleFbSignOut}> Sign Out</button>:
                   <button className="btn btn-primary btn1"  onClick={handleFbSignIn}>Sign In</button>}
               </div>
                 

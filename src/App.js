@@ -12,10 +12,25 @@ import Error from './components/Error/Error';
 import Login from './components/Login/Login';
 function App() {
   return (
-    
+    <Router>
+      <Switch>
+        <Route exact path='/'>
+          <Header></Header>
+        </Route>
+        <Route path = '/detail/:id'>
+          <Detail></Detail>
+        </Route>
+        <Route path = '/place'>
+          <Login></Login>
+        </Route>
+        <Route path="*">
+          <Error></Error>
+        </Route>
+      </Switch>
+    </Router>
   
-  // < Router>
-  <Login></Login>
+ 
+ 
 
      
     

@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import placeImg from '../Header/fakeData';
 import logo from '../../Logo.png';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -11,6 +11,44 @@ const Detail = () => {
     const data = placeImg.find(element=>element.id === parseInt(id));
     const {name,img,description} = data;
 
+    const [information,setInformation] = useState({
+        origin:'',
+        destination:'',
+        date:'',
+        date1:'',
+        isRight:false,
+    })
+
+    const handleBlur = (e)=>{
+        let isValid ;
+        if(e.target.name === "origin"){
+           isValid = /^[a-z\d]{5,12}$/i.test(e.target.value);
+        }
+        if(e.target.name === "destination"){
+            isValid = /^[a-z\d]{5,12}$/i.test(e.target.value);
+         }
+         if(e.target.name === "date"){
+             isValid = !/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(e.target.value);
+         }
+         if(e.target.name === "date1"){
+            isValid = !/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(e.target.value);
+        }
+        if(isValid){
+            const newInformation = {...information};
+            newInformation[e.target.name] = e.target.value;
+            setInformation(newInformation);
+        }
+    }
+    const handleSubmit = (e)=>{
+        console.log(information)
+        if(information.origin && information.destination && information.date && information.date1){
+            const newInformation = {...information};
+            newInformation.isRight = true;
+            setInformation(newInformation);
+        }
+        e.preventDefault();
+    }
+    
     return (
         //Using Navbar using bootstrap
         <div className="container">
@@ -23,28 +61,29 @@ const Detail = () => {
         </nav>  
 
         {/* description and form  */}
-        <div className="row">
-                    <div className="col-md-4 description">
+        <div >
+                   
                     <h1 className="text" style={{color:'green'}}>{name}</h1>
                         <h3 className="text ">{description}</h3>
-                    </div>
-           <div className="mcol-md-6">
-               <form className="description">
+                    
+         
+               <form className="form" onSubmit={handleSubmit}>
                         <p>Origin :</p>
-                        <input type="text" placeholder="Enter your origin"/>
+                        <input type="text " onBlur={handleBlur} className="field1" name="origin" placeholder="Enter your origin" required/>
                         <br/>
                         <br/>
-                        <p>Destinarion :</p>
-                        <input type="text" placeholder="Enter your destination"/>
+                        <p>Destination :</p>
+                        <input type="text" className="field1" onBlur={handleBlur} name="destination" placeholder="Enter your destination" required/>
                         <br/>
                         <br/>
                         <p>From &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To :</p>
-                        <input type="date"/><input type="date"/>
-                        <button className="btn btn-primary">Start Booking</button>
+                        <input type="date" onBlur={handleBlur}  className="field1" name="date" required/><input type="date" name="date1"className="field1" onBlur={handleBlur}  required/ ><br/><br/>
+                        <input type="submit" className="btn btn-primary"  value="Submit"/><br/><br/>
+                       { information.isRight && <Link to={`/place`}><button className="btn btn-primary">Start Booking</button></Link>}
               </form>
            </div>
-           </div>
-           </div>
+          </div>
+           
  
            
         
