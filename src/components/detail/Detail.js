@@ -9,7 +9,7 @@ const Detail = () => {
     //using Link and id
     const {id} = useParams();
     const data = placeImg.find(element=>element.id === parseInt(id));
-    const {name,img,description} = data;
+    const {name,description} = data;
 
     //For originetc information
     const [information,setInformation] = useState({
@@ -26,7 +26,7 @@ const Detail = () => {
            isValid = /^[a-z\d]{5,12}$/i.test(e.target.value);
         }
         if(e.target.name === "destination"){
-            isValid = /^[a-z\d]{5,12}$/i.test(e.target.value);
+            isValid = /^[a-z\d]{5,12}$/i.test(e.target.value) && e.target.value === name;
          }
         if(e.target.name === "date"){
              isValid = !/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(e.target.value);

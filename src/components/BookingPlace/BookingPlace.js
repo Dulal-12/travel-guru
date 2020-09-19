@@ -7,6 +7,7 @@ import './BookingPlace.css';
 import { userContext } from '../../App';
 import { useParams } from 'react-router-dom';
 import placeImg from '../Header/fakeData';
+import StarRateIcon from '@material-ui/icons/StarRate';
 const BookingPlace = () => {
 
     const [loggedIn,setLoggedIn] = useContext(userContext);
@@ -27,7 +28,7 @@ const BookingPlace = () => {
             <div className="col-md-4 col-sm-4 hotel-detail">
                 <h3>Light bright airy stylish apt & safe peaceful stay</h3>
                 <p>4 Guests 2 bedrooms 2 beds 2 baths wifi air condition kitchen</p>
-                <present>4.9(20)  $34/night $167/total</present>
+                <present> <StarRateIcon style={{color:'yellow'}}/><StarRateIcon style={{color:'yellow'}}/><StarRateIcon style={{color:'yellow'}}/>4.9(20)  $34/night $167/total</present>
             </div>
             </div>
 
@@ -39,7 +40,7 @@ const BookingPlace = () => {
                 <h3>Apartment in Lost Paronoma</h3>
                 <p>4 Guests 2 bedrooms 2 beds 2 baths wifi air condition kitchen</p>
                 <p>Cancellation fexibility available</p>
-                <present>4.8(10)  $54/night $167/total</present>
+                <present><StarRateIcon style={{color:'yellow'}}/><StarRateIcon style={{color:'yellow'}}/> 4.8(10)  $54/night $167/total</present>
             </div>
             </div>
     

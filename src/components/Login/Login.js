@@ -99,6 +99,7 @@ const Login = () => {
                 newUser.isValid=true;
                 setUser(newUser);
                 updateName(user.name);
+                verifyEmail();
             })
             .catch(error=> {
                 const newUser = {...user};
@@ -146,7 +147,26 @@ const Login = () => {
                 // An error happened.
                 });
     }
+    const verifyEmail = ()=>{
+        var user = firebase.auth().currentUser;
+
+                user.sendEmailVerification().then(function() {
+                // Email sent.
+                }).catch(function(error) {
+                // An error happened.
+                });
+    }
    
+    const resetPassword  = email =>{
+        var auth = firebase.auth();
+            
+
+            auth.sendPasswordResetEmail(email).then(function() {
+            // Email sent.
+            }).catch(function(error) {
+            // An error happened.
+            });
+    }
     return (
         <div >
              <form className="description" onSubmit={handleSubmit}>
@@ -165,7 +185,7 @@ const Login = () => {
                         <br/>
                        {newUser ?<input type="submit" className="btn btn-primary"  value="Sign Up"/>:<input type="submit" className="btn btn-primary"  value="Sign in"/>}
                         {user.isValid?<p style={{fontSize:'18px'}}>{user.success}</p>:<p style={{fontSize:'18px'}}>{user.error}</p>}
-                        
+                        <button className="btn btn-succcess" onClick={()=>resetPassword (user.email)}>Forget or Reset Password</button>
               </form>
              
               <div>
