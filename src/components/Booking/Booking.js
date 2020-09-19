@@ -1,13 +1,12 @@
 import React from 'react';
 import './Booking.css';
 import { Link } from 'react-router-dom';
-import Detail from '../detail/Detail';
 
 const Booking = (props) => {
     const {name,img,description,id} = props.place;
 
     return (
-        <div className="booking">
+        <div className="booking container">
                 <div className="card mb-3" >
                 <div className="text-center">
                         <img src={img} className="rounded img-style" alt="..."/>
@@ -18,9 +17,7 @@ const Booking = (props) => {
                       <Link to ={`/detail/${id}`}>  <button className="btn btn-primary">Booking</button></Link>
                 </div>
                 </div>
-                
         </div>
     );
 };
-
 export default Booking;

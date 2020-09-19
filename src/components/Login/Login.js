@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './Login.css';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from '../../firebase.config';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import EmailIcon from '@material-ui/icons/Email';
+import { userContext } from '../../App';
+import { useHistory, useLocation } from 'react-router-dom';
 
 firebase.initializeApp(firebaseConfig);
+
 const Login = () => {
     //usestate for google and facebook
     const [detail,setDetail] = useState({
@@ -26,6 +29,10 @@ const Login = () => {
     })
 
     const [newUser,setNewUser] = useState(false);
+    const [loggedIn,setLoggedIn] = useContext(userContext);
+    const history = useHistory();
+    const location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } };
 
 //firebase Provider
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -111,6 +118,8 @@ const Login = () => {
                 newUser.success = "Successful Your Signing Process";
                 newUser.isValid=true;
                 setUser(newUser);
+                setLoggedIn(newUser);
+                history.push(from);
             })
             .catch(error=> {
                 const newUser = {...user};

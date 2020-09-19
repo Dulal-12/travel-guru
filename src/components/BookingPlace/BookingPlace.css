@@ -1,0 +1,38 @@
+.hotel{
+    display:flex;
+    margin-top:50px;
+    margin-bottom:50px;
+    
+}
+.img{
+    height:250px;
+    border:1px solid green;
+    border-radius: 40px;
+    box-shadow:5px 5px 10px grey;
+
+}
+.hotel-detail{
+    margin-left:100px;
+    padding:30px;
+    border:none;
+    border-radius: 40px;
+    
+    
+}
+.hotel-detail h3{
+    color:green;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.hotel-detail p,present{
+    color:grey;
+    font-size:15px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.top{
+    text-align:center;
+    color:salmon;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:30px;
+    border-radius: 20px;
+    
+}

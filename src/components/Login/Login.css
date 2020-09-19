@@ -2,16 +2,22 @@
     border:1px solid green;
     height:40px;
     width:250px;
+    border-radius: 10px;
+    padding:20px;
 }
 .description input[type = 'password']{
     border:1px solid green;
     height:40px;
     width:250px;
+    border-radius: 10px;
+    padding:20px;
 }
 .description input[type = 'text']{
     border:1px solid green;
     height:40px;
     width:250px;
+    border-radius: 10px;
+    padding:20px;
 }
 .description{
     margin:100px 500px;

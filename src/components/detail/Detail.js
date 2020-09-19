@@ -11,6 +11,7 @@ const Detail = () => {
     const data = placeImg.find(element=>element.id === parseInt(id));
     const {name,img,description} = data;
 
+    //For originetc information
     const [information,setInformation] = useState({
         origin:'',
         destination:'',
@@ -27,10 +28,10 @@ const Detail = () => {
         if(e.target.name === "destination"){
             isValid = /^[a-z\d]{5,12}$/i.test(e.target.value);
          }
-         if(e.target.name === "date"){
+        if(e.target.name === "date"){
              isValid = !/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(e.target.value);
          }
-         if(e.target.name === "date1"){
+        if(e.target.name === "date1"){
             isValid = !/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(e.target.value);
         }
         if(isValid){
@@ -39,6 +40,8 @@ const Detail = () => {
             setInformation(newInformation);
         }
     }
+
+
     const handleSubmit = (e)=>{
         console.log(information)
         if(information.origin && information.destination && information.date && information.date1){
@@ -52,13 +55,7 @@ const Detail = () => {
     return (
         //Using Navbar using bootstrap
         <div className="container">
-           <nav className="navbar navbar-dark bg-light " >
-                  <a href='/#' className="navbar-brand"><img className="logo" src={logo} alt="" srcset=""/></a>
-                 <form className="form-inline">
-                      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                      <button className="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-                 </form>
-        </nav>  
+            
 
         {/* description and form  */}
         <div >
@@ -67,7 +64,9 @@ const Detail = () => {
                         <h3 className="text ">{description}</h3>
                     
          
-               <form className="form" onSubmit={handleSubmit}>
+              <div className="row container">
+                  <div >
+                  <form className="form col-md-8 " onSubmit={handleSubmit}>
                         <p>Origin :</p>
                         <input type="text " onBlur={handleBlur} className="field1" name="origin" placeholder="Enter your origin" required/>
                         <br/>
@@ -79,15 +78,13 @@ const Detail = () => {
                         <p>From &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To :</p>
                         <input type="date" onBlur={handleBlur}  className="field1" name="date" required/><input type="date" name="date1"className="field1" onBlur={handleBlur}  required/ ><br/><br/>
                         <input type="submit" className="btn btn-primary"  value="Submit"/><br/><br/>
-                       { information.isRight && <Link to={`/place`}><button className="btn btn-primary">Start Booking</button></Link>}
+                       { information.isRight && <Link to={`/place/${id}`}><button className="btn btn-primary">Start Booking</button></Link>}
               </form>
+                  </div>
+              </div>
            </div>
           </div>
-           
- 
-           
-        
-    );
+        );
 };
 
 export default Detail;

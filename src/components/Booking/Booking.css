@@ -1,9 +1,7 @@
 .img-style{
-  
     border-radius:20px;
     box-shadow:5px 5px 10px grey;
-    border:2px solid yellowgreen;
-    
+    border:2px solid yellowgreen;  
 }
 .text{
     font-family: 'Kalam', cursive;
