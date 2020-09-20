@@ -3,6 +3,7 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import hotel1 from'../../Image/Rectangle 26.png';
 import hotel2 from'../../Image/Rectangle 27.png';
 import logo from '../../Logo.png';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import './BookingPlace.css';
 import { userContext } from '../../App';
 import { useParams } from 'react-router-dom';
@@ -14,7 +15,7 @@ const BookingPlace = () => {
     
     const {id} = useParams();
     const data = placeImg.find(element=>element.id === parseInt(id));
-    const {name} = data;
+    const {name,place} = data;
     return (
         <div >
             
@@ -42,10 +43,13 @@ const BookingPlace = () => {
                 <p>Cancellation fexibility available</p>
                 <present><StarRateIcon style={{color:'yellow'}}/><StarRateIcon style={{color:'yellow'}}/> 4.8(10)  $54/night $167/total</present>
             </div>
+           
             </div>
-    
+            
+            
         </div>
     );
 };
 
-export default BookingPlace;
+
+export default (BookingPlace);
