@@ -53,7 +53,7 @@ const Detail = () => {
     }
     
     return (
-        //Using Navbar using bootstrap
+       
         <div className="container">
             
 

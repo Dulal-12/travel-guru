@@ -1,7 +1,5 @@
 .text-style {
-    
-    font-size:20px;
-    
+    font-size:20px; 
 }
 .form{
     border:1px solid grey;
@@ -11,7 +9,6 @@
     border:none;
     box-shadow:5px 5px 10px grey;
     border-radius:20px;
-
 }
 .field1{
     border-radius: 10px;

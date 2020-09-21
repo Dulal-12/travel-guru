@@ -4,15 +4,15 @@ import Header from './components/Header/Header';
 import Detail from './components/detail/Detail';
 import Error from './components/Error/Error';
 import Login from './components/Login/Login';
+import BookingPlace from './components/BookingPlace/BookingPlace';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Head from './components/Head/Head';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-import BookingPlace from './components/BookingPlace/BookingPlace';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import Head from './components/Head/Head';
 export const userContext = createContext();
 
 
@@ -37,6 +37,7 @@ function App() {
                  <PrivateRoute path = '/place/:id'>
                         <BookingPlace/>
                  </PrivateRoute>
+                 
                  <Route path="/Login">
                      <Login/>
                  </Route>

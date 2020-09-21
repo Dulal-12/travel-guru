@@ -44,6 +44,7 @@ const Login = () => {
            const newDetail = {...detail};
            newDetail.isSignIn = true;
            setDetail(newDetail);
+          
         })}
 
     const hadleGoogleSignOut = ()=>{
@@ -128,12 +129,8 @@ const Login = () => {
                 newUser.success = '';
                 newUser.isValid=false;
                 setUser(newUser);
-                
-                
-              });
+                 });
         }
-
-
         e.preventDefault();
     }
     const updateName = name=>{

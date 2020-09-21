@@ -2,20 +2,18 @@ import React, { useContext } from 'react';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import hotel1 from'../../Image/Rectangle 26.png';
 import hotel2 from'../../Image/Rectangle 27.png';
-import logo from '../../Logo.png';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import './BookingPlace.css';
 import { userContext } from '../../App';
 import { useParams } from 'react-router-dom';
 import placeImg from '../Header/fakeData';
 import StarRateIcon from '@material-ui/icons/StarRate';
+import './BookingPlace.css';
 const BookingPlace = () => {
 
     const [loggedIn,setLoggedIn] = useContext(userContext);
     
     const {id} = useParams();
     const data = placeImg.find(element=>element.id === parseInt(id));
-    const {name,place} = data;
+    const {name} = data;
     return (
         <div >
             
@@ -45,9 +43,10 @@ const BookingPlace = () => {
             </div>
            
             </div>
+            </div>
             
             
-        </div>
+        
     );
 };
 
